@@ -1,0 +1,58 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>编辑书籍</title>
+     <link rel="stylesheet" href="{% static "add.css" %}">
+</head>
+<body>
+         <div class="add">
+        <form action="/edit_book/" method="post">
+            {% csrf_token %}
+            <table  width="100%" border="1px" cellpadding="5px" cellspacing="0px" >
+              <tr bgcolor="#6495ed" >
+            <td height="30px" >
+                <font size="6px" text-align:center>修改图书</font>
+            </td>
+        </tr>
+                <tr>
+                    <td>
+                         <input type="text" style="display:none" name="id" value="{{ book_obj.id }}">
+            <p>
+                书名:
+                <input type="text" name="book_title" value="{{ book_obj.title }}">
+            </p>
+
+                出版社:
+                <select name="publisher" >
+                    {% for publisher in publisher_list %}
+
+                        {% if book_obj.publisher_id == publisher.id %}
+                            <option selected value="{{ publisher.id }}">
+                                {{ publisher.name }}
+                            </option>
+                         {% else %}
+                            <option  value="{{ publisher.id }}">
+                                {{ publisher.name }}
+                            </option>
+                        {% endif %}
+                    {% endfor %}
+                </select>
+
+            <p>
+                <input type="submit" value="提交">
+            </p>
+
+
+                    </td>
+                </tr>
+
+
+            </table>
+
+        </form>
+         </div>
+
+</body>
+</html>

@@ -1,0 +1,142 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>书籍列表</title>
+    <link rel="stylesheet" href="{% static "book_list.css" %}">
+
+</head>
+<body>
+    <div class="header">
+
+		<span class="h1">线上图书馆</span>
+
+		<div class='list'>
+
+				<ul>
+					<li class="l1"><a href='#' class="a1">主页</a></li>
+					<li class="l1"><a href='#' class="a1">设置</a></li>
+					<li class="l1"><a href='#' class="a1">关于</a></li>
+					<li class="l1"><a href='#' class="a1">帮助</a></li>
+
+				</ul>
+
+			</div>
+    </div>
+
+    <div class="container">
+        <div class="left">
+            <ul>
+					<li class="l2"><a href='/author_list/' class="a2">作者列表</a></li>
+					<li class="l2"><a href=/publisher_list/ class="a2">出版社列表</a></li>
+
+            </ul>
+
+
+
+
+			</div>
+		<div class="right">
+
+            <button type="button" class="b1"><a href="/add_book/" class="a3">添加书籍</a></button>
+
+{#        <table  width="80%" border="1px" cellpadding="5px" cellspacing="0px" >#}
+{#        <thead>#}
+{#        <tr bgcolor="#6495ed" >#}
+{#            <td colspan="5" height="30px" >#}
+{#                <font size="6px" text-align:center>图书表</font>#}
+{#            </td>#}
+{#        </tr>#}
+{#        <tr>#}
+{#            <th>序号</th>#}
+{#            <th>id</th>#}
+{#            <th>书名</th>#}
+{#            <th>出版社</th>#}
+{#            <th>操作</th>#}
+{##}
+{#        </tr>#}
+{#        </thead>#}
+{##}
+{#        <tbody>#}
+{#            {% for i in all_book %}#}
+{#                <tr>#}
+{#                    <td>{{ forloop.counter }}</td>#}
+{#                    <td>{{ i.id }}</td>#}
+{#                    <td>{{ i.title }}</td>#}
+{#                    <td>{{ i.publisher.name }}</td>#}
+{#                    <td>#}
+{#                        <a href="/delete_book/?id={{ i.id }}" class="a2">#}
+{#                            删除#}
+{#                        </a>#}
+{#                        <a href="/edit_book/?id={{ i.id }}" class="a2">#}
+{#                            编辑#}
+{#                        </a>#}
+{#                    </td>#}
+{#                </tr>#}
+{#            {% endfor %}#}
+{#        </tbody>#}
+{#    </table>#}
+
+        <table  width="80%" border="1px" cellpadding="5px" cellspacing="0px" >
+        <thead>
+        <tr bgcolor="#6495ed" >
+            <td colspan="5" height="30px" >
+                <font size="6px" text-align:center>图书表</font>
+            </td>
+        </tr>
+        <tr>
+            <th>序号</th>
+            <th>id</th>
+            <th>书名</th>
+            <th>出版社</th>
+            <th>操作</th>
+
+        </tr>
+        </thead>
+
+        <tbody>
+             {% for i in books_list %}
+                <tr>
+                    <td>{{ forloop.counter }}</td>
+                    <td>{{ i.id }}</td>
+                    <td>{{ i.title }}</td>
+                    <td>{{ i.publisher.name }}</td>
+                    <td>
+                        <a href="/delete_book/?id={{ i.id }}" class="a2">
+                            删除
+                        </a>
+                        <a href="/edit_book/?id={{ i.id }}" class="a2">
+                            编辑
+                        </a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+        <div class="page">
+            <span class="step">
+                {% if books_list.has_previous %}
+                    <button><a href="?page=1" class="a4">首页</a> </button>
+                   <button><a href="?page={{ books_list.previous_page_number }}" class="a4">上一页</a></button>
+
+                {% endif %}
+            <span>
+                {{ books_list.number }}
+            </span>
+            {% if books_list.has_next %}
+                <button><a href="?page={{ books_list.next_page_number }}" class="a4">下一页</a></button>
+                <button> <a href="?page={{ books_list.paginator.num_pages }}" class="a4">尾页</a></button>
+            {% endif %}
+            </span>
+        </div>
+
+	</div>
+
+    </div>
+
+
+
+</body>
+</html>

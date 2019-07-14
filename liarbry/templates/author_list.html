@@ -1,0 +1,95 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>作者列表</title>
+    <link rel="stylesheet" href="{% static "book_list.css" %}">
+</head>
+<body>
+    <div class="header">
+
+		<span class="h1">线上图书馆</span>
+
+		<div class='list'>
+
+				<ul>
+					<li class="l1"><a href='#' class="a1">主页</a></li>
+					<li class="l1"><a href='#' class="a1">设置</a></li>
+					<li class="l1"><a href='#' class="a1">关于</a></li>
+					<li class="l1"><a href='#' class="a1">帮助</a></li>
+
+				</ul>
+
+			</div>
+    </div>
+
+    <div class="container">
+        <div class="left">
+            <ul>
+					<li class="l2"><a href='/book_list/' class="a2">图书列表</a></li>
+					<li class="l2"><a href=/publisher_list/ class="a2">出版社列表</a></li>
+
+
+				</ul>
+
+
+
+
+			</div>
+		<div class="right">
+
+            <button type="button" class="b1"><a href="/add_author/" class="a3">添加作者</a></button>
+
+        <table  width="80%" border="1px" cellpadding="5px" cellspacing="0px" >
+        <thead>
+        <tr bgcolor="#6495ed" >
+            <td colspan="5" height="30px" >
+                <font size="6px" text-align:center>作者表</font>
+            </td>
+        </tr>
+        <tr>
+            <th>序号</th>
+                <th>ID</th>
+                <th>名字</th>
+                <th>作者作品</th>
+                <th>操作</th>
+
+        </tr>
+        </thead>
+
+        <tbody>
+       {% for author in author_list %}
+            <tr>
+                <td>{{ forloop.counter }}</td>
+                <td>{{ author.id }}</td>
+                <td>{{ author.name }}</td>
+                <td>
+                    {% for book in author.book.all %}
+                        {{ book.title }}&nbsp;
+
+                     {% endfor %}
+                </td>
+                <td>
+                    <a href="/delete_author/?id={{ author.id }}" class="a2">
+                        删除
+                    </a>
+                    <a href="/edit_author/?id={{ author.id }}" class="a2">
+                        编辑
+                    </a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+	</div>
+
+    </div>
+
+
+
+</body>
+</html>
+
+
+

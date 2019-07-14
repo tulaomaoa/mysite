@@ -1,0 +1,1 @@
+define(function(){!function(a){a.fn.tabs=function(){return this.each(function(){var c=a(this),h=c.find("ul:eq(0) li"),v=c.find(".tab-con");v.hide(),v.eq(0).show(),h.eq(0).addClass("ui-tabs-active"),h.on("click",function(e){e.preventDefault(),h.removeClass("ui-tabs-active"),v.hide();var c=h.index(a(this));a(this).addClass("ui-tabs-active"),v.eq(c).show()})})}}(window.jQuery)});

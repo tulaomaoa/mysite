@@ -1,0 +1,25 @@
+<nav aria-label="Page navigation">
+    <ul >
+        {% if books_list.has_previous %}
+            <li>
+                <a href="?page={{ books_list.previous_page_number }}" aria-label="Previous">
+                    <span aria-hidden="true">
+                        &laquo;
+                    </span>
+                </a>
+            </li>
+        {% endif %}
+    {% for pg in books_list.paginator.page_range %}
+        {% if books_list.number == pg %}
+            <li><a href="?page={{ pg }}">{{ pg }}</a></li>
+        {% endif %}
+    {% endfor %}
+{% if cus_list.has_next %}
+    <li>
+        <a href="?page={{ books_list.next_page_number }}" aria-label="'Next">
+            <span aria-hidden="true"> &raquo;</span>
+        </a>
+    </li>
+{% endif %}
+    </ul>
+</nav>

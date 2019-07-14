@@ -1,0 +1,37 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>添加出版社</title>
+    <link rel="stylesheet" href="{% static "add.css" %}">
+
+
+</head>
+<body>
+     <div class="add">
+         <form action="/add_publisher/" method="post">
+            {% csrf_token %}
+          <table  width="100%" border="1px" cellpadding="5px" cellspacing="0px" >
+          <tr bgcolor="#6495ed" >
+            <td height="30px" >
+                <font size="6px" text-align:center>添加出版社</font>
+            </td>
+        </tr>
+          <tr>
+              <td>
+                 <input type="text" name="publisher_name">
+                  <input type="submit" value="提交">
+                <p style="color:red">{{ error }}</p>
+              </td>
+          </tr>
+
+         </table>
+
+    </form>
+    </div>
+
+
+
+</body>
+</html>

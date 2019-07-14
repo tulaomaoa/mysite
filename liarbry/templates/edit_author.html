@@ -1,0 +1,60 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>编辑作者</title>
+     <link rel="stylesheet" href="{% static "add.css" %}">
+</head>
+<body>
+
+         <div class="add">
+          <form action="/edit_author/" method="post">
+            {% csrf_token %}
+            <table  width="100%" border="1px" cellpadding="5px" cellspacing="0px" >
+              <tr bgcolor="#6495ed" >
+            <td height="30px" >
+                <font size="6px" text-align:center>修改作者</font>
+            </td>
+        </tr>
+
+                <tr>
+                    <td>
+                         <input type="text " name="author_id" value = "{{ author.id }}" style="display:none">
+        <p>
+            作者姓名: <input type="text" name="author_name" value = "{{ author.name }}">
+        </p>
+
+        <p>
+            作品：
+            <select multiple name="books" id="">
+                {% for book in book_list %}
+                    {% if book in author.book.all %}
+                        <option selected value="{{ book.id }}">
+                            {{ book.title }}
+                        </option>
+                    {% else %}
+                        <option value="{{ book.id }}">
+                            {{ book.title }}
+                        </option>
+                    {% endif %}
+                {% endfor %}
+            </select>
+
+        </p>
+        <p>
+            <input type="submit" value="提交">
+        </p>
+                    </td>
+                </tr>
+
+
+            </table>
+
+        </form>
+         </div>
+
+
+
+</body>
+</html>

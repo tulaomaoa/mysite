@@ -1,0 +1,1 @@
+define(function(require){require("./sidebar.js"),require("./right.js"),require("./content.js"),require("../common/course_tipoff.js")});

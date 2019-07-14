@@ -1,0 +1,35 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>编辑出版社</title>
+     <link rel="stylesheet" href="{% static "add.css" %}">
+</head>
+<body>
+<div class="add">
+         <form action="/edit_publisher/" method="post">
+            {% csrf_token %}
+          <table  width="100%" border="1px" cellpadding="5px" cellspacing="0px" >
+          <tr bgcolor="#6495ed" >
+            <td height="30px" >
+                <font size="6px" text-align:center>编辑出版社</font>
+            </td>
+        </tr>
+          <tr>
+              <td>
+                  <input type="text" name="id" value="{{ publisher.id }}" style="display:none">
+                  <input type="text" name="publisher_name" value="{{ publisher.name }}">
+                  <input type="submit" value="提交">
+              </td>
+          </tr>
+
+         </table>
+
+    </form>
+    </div>
+
+
+
+</body>
+</html>

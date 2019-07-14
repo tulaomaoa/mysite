@@ -1,0 +1,45 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>添加书籍</title>
+    <link rel="stylesheet" href="{% static "add.css" %}">
+</head>
+<body>
+    <div class="add">
+         <form action="/add_book/" method="post">
+            {% csrf_token %}
+          <table  width="100%" border="1px" cellpadding="5px" cellspacing="0px" >
+          <tr bgcolor="#6495ed" >
+            <td height="30px" >
+                <font size="6px" text-align:center>图书</font>
+            </td>
+        </tr>
+          <tr>
+              <td>
+                   <p>
+            书名：<input type="text" name="book_title" width="50%">
+        </p>
+        <p>
+            出版社:<select name="publisher">
+            {% for publisher in publisher_list %}
+                <option value="{{ publisher.id }}">
+                    {{ publisher.name }}
+                </option>
+            {% endfor %}
+        </select>
+        </p>
+        <p>
+            <input type="submit" value="提交">
+        </p>
+              </td>
+          </tr>
+
+         </table>
+
+    </form>
+    </div>
+
+</body>
+</html>
